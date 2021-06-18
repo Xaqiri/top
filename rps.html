@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+    <h1>No</h1>
+<script>
+    let points = [0, 0]
+    let round = (computerSelection, playerSelection) => { 
+        if (computerSelection == playerSelection) { 
+            return 'Tie'
+        } else if (computerSelection == 'paper' && playerSelection == 'rock') { 
+            points[0] +=1 
+            return 'Computer wins' 
+        } else if (computerSelection == 'scissors' && playerSelection == 'rock') {
+            points[1] += 1 
+            return 'Player wins'
+        } else if (computerSelection == 'rock' && playerSelection == 'paper') { 
+            points[1] += 1 
+            return 'Player wins'
+        } else if (computerSelection == 'scissors' && playerSelection == 'paper') { 
+            points[0] += 1 
+            return 'Computer wins'
+        } else if (computerSelection == 'rock' && playerSelection == 'scissors') { 
+            points[0] += 1 
+            return 'Computer wins'
+        } else if (computerSelection == 'paper' && playerSelection == 'scissors') { 
+            points[1] += 1
+            return 'Player wins'
+        }
+        
+    } 
+    let game = () => { 
+        for (i=0; i<5; i++) { 
+            let computerPlay = () => { 
+                const computerChoices = ['rock', 'paper', 'scissors']
+                let compChoice = computerChoices[Math.floor(Math.random()*computerChoices.length)]
+                return compChoice
+            } 
+            let computerSelection = computerPlay()
+            let playerSelection = prompt("What's your choice?", "rock")
+            if (playerSelection != null) { 
+                playerSelection = playerSelection.toLowerCase() 
+            } else break
+            console.log(round(computerSelection, playerSelection))
+            console.log(computerSelection, playerSelection)
+        }
+    }
+    game()
+    console.log(points)
+    if (points[0] > points[1]) { console.log('The computer wins the game') } 
+    else if (points[0] < points[1]) { console.log('You win the game') } 
+    else { console.log('It was a tie') }
+</script>
+</head>
